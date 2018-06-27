@@ -16,7 +16,7 @@ all: vet
 include Makefile.common
 
 STATICCHECK_IGNORE = \
-  github.com/prometheus/mysqld_exporter/mysqld_exporter.go:SA1019
+  github.com/jenningsloy318/mysqld_exporter/mysqld_exporter.go:SA1019
 
 DOCKER_IMAGE_NAME ?= mysqld-exporter
 

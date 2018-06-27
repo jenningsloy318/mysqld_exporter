@@ -13,9 +13,10 @@ import (
 	"gopkg.in/alecthomas/kingpin.v2"
 	"gopkg.in/ini.v1"
 
-	"github.com/prometheus/mysqld_exporter/collector"
+	"github.com/jenningsloy318/mysqld_exporter/collector"
 )
 
+// define  flag
 var (
 	listenAddress = kingpin.Flag(
 		"web.listen-address",
@@ -90,11 +91,12 @@ func init() {
 	prometheus.MustRegister(version.NewCollector("mysqld_exporter"))
 }
 
+// define new http handleer
 func newHandler(scrapers []collector.Scraper) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		filteredScrapers := scrapers
-		params := r.URL.Query()["collect[]"]
-		log.Debugln("collect query:", params)
+		params := r.URL.Query()["collect[]"] // query if the request contains string collect[]
+		log.Debugln("collect query:", params)  
 
 		// Check if we have some "collect[]" query parameters.
 		if len(params) > 0 {
