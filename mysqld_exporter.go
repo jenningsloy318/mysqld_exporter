@@ -95,7 +95,7 @@ func init() {
 func newHandler(scrapers []collector.Scraper) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		filteredScrapers := scrapers
-		params := r.URL.Query()["collect[]"] // query if the request contains string collect[]
+		params := r.URL.Query()["collect[]"] // query if the request contains string collect[],which is defined in the prometheus scrape_configs 
 		log.Debugln("collect query:", params)  
 
 		// Check if we have some "collect[]" query parameters.
